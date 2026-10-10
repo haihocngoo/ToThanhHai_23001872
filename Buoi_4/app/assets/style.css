@@ -1,0 +1,11 @@
+body { font-family: Arial, sans-serif; line-height: 1.5; color: #222; background: #f5f7fa; }
+main { max-width: 900px; margin: 32px auto; padding: 28px; background: white; border-radius: 8px; }
+nav { margin-bottom: 24px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+th { background: #e8eef8; }
+label { display: block; margin: 14px 0; }
+input { display: block; padding: 8px; width: min(100%, 350px); box-sizing: border-box; }
+button { padding: 9px 18px; cursor: pointer; }
+.error { color: #ad1919; }
+.success { color: #137333; }
