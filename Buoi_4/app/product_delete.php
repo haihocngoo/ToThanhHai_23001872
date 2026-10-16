@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/common/auth.php';
+requireLogin();
 require_once __DIR__ . '/model/product.php';
 require_once __DIR__ . '/common/helpers.php';
 $id = productId($_GET['id'] ?? null);
@@ -11,6 +13,7 @@ if (!$product) {
     exit;
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    verifyCsrfToken($_POST['csrf_token'] ?? null);
     if (productId($_POST['id'] ?? null) !== $id) {
         http_response_code(400);
         exit('Yêu cầu không hợp lệ.');
@@ -24,6 +27,7 @@ require __DIR__ . '/view/header.php';
 <h2>Xác nhận xóa</h2>
 <p>Bạn có chắc muốn xóa sản phẩm <strong><?= escapeHtml($product['name']) ?></strong> (ID <?= $id ?>)?</p>
 <form method="post" action="product_delete.php?id=<?= $id ?>">
+    <input type="hidden" name="csrf_token" value="<?= escapeHtml(csrfToken()) ?>">
     <input type="hidden" name="id" value="<?= $id ?>">
     <button type="submit">Xác nhận xóa</button>
     <a href="product_list.php">Hủy</a>

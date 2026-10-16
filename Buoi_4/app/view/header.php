@@ -9,4 +9,6 @@
 <body>
 <main>
     <h1>Quản lý sản phẩm</h1>
-    <nav><a href="product_list.php">Danh sách</a> | <a href="product_add.php">Thêm sản phẩm</a></nav>
+    <?php if (isset($_SESSION['user_id'], $_SESSION['username'])): ?>
+        <nav><a href="product_list.php">Danh sách</a> | <a href="product_add.php">Thêm sản phẩm</a> | Tài khoản: <?= escapeHtml($_SESSION['username']) ?> | <a href="logout.php">Đăng xuất</a></nav>
+    <?php endif; ?>
