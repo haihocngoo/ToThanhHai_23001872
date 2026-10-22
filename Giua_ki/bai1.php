@@ -14,3 +14,4 @@ if ($score >= 8) {
 echo "Họ tên: " . $name . "\n";
 echo "Điểm: " . $score . "\n";
 echo "Xếp loại: " . $rank . "\n";
+?>
