@@ -40,3 +40,4 @@ if ($maxPrice !== null) {
 } else {
     echo "Danh sách sản phẩm rỗng.\n";
 }
+?>
