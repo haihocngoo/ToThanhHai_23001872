@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Ảnh đại diện chữ TH">
+  <defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#305eab"/><stop offset="1" stop-color="#6d78c9"/></linearGradient></defs>
+  <rect width="240" height="240" rx="60" fill="url(#g)"/>
+  <circle cx="120" cy="112" r="75" fill="#ffffff" opacity=".12"/>
+  <text x="120" y="144" text-anchor="middle" font-family="Arial,sans-serif" font-size="78" font-weight="700" fill="#fff">TH</text>
+</svg>

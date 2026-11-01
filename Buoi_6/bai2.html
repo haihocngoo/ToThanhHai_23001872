@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 2 - Đặt vé xem phim</title><link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="bai2.js" defer></script>
+</head>
+<body>
+  <main id="app" class="shell narrow" v-cloak>
+    <a class="back-link" href="index.html">← Danh sách bài tập</a>
+    <p class="eyebrow">Bài 2 · Đặt vé xem phim</p>
+    <h1>Đặt vé xem phim</h1>
+    <p class="lead">Phim: <strong>Hành trình đến tương lai</strong></p>
+    <form class="panel form-stack" @submit.prevent="bookTickets">
+      <label for="customer">Họ tên khách hàng</label>
+      <input id="customer" v-model.trim="customerName" type="text" autocomplete="name" placeholder="Nhập họ và tên" required>
+
+      <label for="showtime">Suất chiếu</label>
+      <select id="showtime" v-model="showtime">
+        <option v-for="time in showtimes" :key="time" :value="time">{{ time }}</option>
+      </select>
+
+      <fieldset>
+        <legend>Loại vé</legend>
+        <label class="choice"><input type="radio" v-model="ticketType" value="regular"> Vé thường · 70.000 đ</label>
+        <label class="choice"><input type="radio" v-model="ticketType" value="vip"> Vé VIP · 100.000 đ</label>
+      </fieldset>
+
+      <label for="quantity">Số lượng vé (1–10)</label>
+      <div class="quantity-row">
+        <button type="button" class="secondary square" @click="decrease" :disabled="!validQuantity || quantity <= 1" aria-label="Giảm số lượng">−</button>
+        <input id="quantity" v-model.number="quantity" type="number" min="1" max="10" step="1" required>
+        <button type="button" class="secondary square" @click="increase" :disabled="!validQuantity || quantity >= 10" aria-label="Tăng số lượng">+</button>
+      </div>
+      <p v-if="!validQuantity" class="error">Số lượng phải là số nguyên từ 1 đến 10.</p>
+
+      <label class="choice combo"><input type="checkbox" v-model="hasCombo"> Thêm combo bắp nước · 45.000 đ/đơn</label>
+      <div class="total"><span>Tổng tiền</span><strong>{{ formatMoney(total) }}</strong></div>
+      <div class="actions">
+        <button type="submit" :disabled="!canBook">Đặt vé</button>
+        <button type="button" class="secondary" @click="resetForm">Đặt lại</button>
+      </div>
+    </form>
+    <section v-if="confirmation" class="panel confirmation" role="status">
+      <h2>Đặt vé thành công</h2>
+      <p><strong>{{ confirmation.name }}</strong> đã đặt {{ confirmation.quantity }} vé {{ confirmation.type }} cho suất {{ confirmation.showtime }}.</p>
+      <p>Combo bắp nước: {{ confirmation.combo ? 'Có' : 'Không' }}</p>
+      <p>Thanh toán: <strong>{{ formatMoney(confirmation.total) }}</strong></p>
+    </section>
+  </main>
+</body>
+</html>

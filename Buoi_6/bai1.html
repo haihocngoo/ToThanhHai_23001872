@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 1 - Thẻ sinh viên</title><link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="bai1.js" defer></script>
+</head>
+<body>
+  <main id="app" class="shell" v-cloak>
+    <a class="back-link" href="index.html">← Danh sách bài tập</a>
+    <p class="eyebrow">Bài 1 · Thẻ thông tin sinh viên</p>
+    <h1>Hồ sơ sinh viên</h1>
+    <section class="panel student-card">
+      <img class="avatar" v-bind:src="student.avatar" v-bind:alt="'Ảnh đại diện của ' + student.name">
+      <div class="student-details">
+        <h2>{{ student.name }}</h2>
+        <p class="muted">Mã sinh viên <strong>{{ student.id }}</strong></p>
+        <p>Lớp: <strong v-text="student.className"></strong></p>
+        <p>Điểm trung bình: <strong>{{ student.gpa.toFixed(1) }}/10</strong></p>
+        <p>Xếp loại: <span class="badge" :class="rankClass">{{ rank }}</span></p>
+        <p v-if="student.isStudying" class="status active">● Đang học</p>
+        <p v-else class="status inactive">● Đã nghỉ</p>
+        <button type="button" class="secondary" @click="showIntro = !showIntro">{{ showIntro ? 'Ẩn giới thiệu' : 'Xem giới thiệu' }}</button>
+        <p v-show="showIntro" class="intro">{{ student.introduction }}</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
