@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 1 - Quản lý sản phẩm</title><link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="bai1.js" defer></script>
+</head>
+<body>
+  <main id="app" class="container" v-cloak>
+    <a class="back" href="index.html">← Danh sách bài tập</a>
+    <p class="eyebrow">Bài 1 · Directive, computed, watch, mounted</p>
+    <h1>Danh sách sản phẩm</h1>
+    <p class="lead">Trạng thái trang: <span class="state-pill">{{ pageStatus }}</span></p>
+    <section class="panel">
+      <div class="controls">
+        <label>Tìm theo tên<input v-model="keyword" type="search" placeholder="Ví dụ: chuột" aria-label="Tìm theo tên sản phẩm"></label>
+        <label>Danh mục<select v-model="selectedCategory"><option value="">Tất cả</option><option v-for="category in categories" :key="category" :value="category">{{ category }}</option></select></label>
+        <label>Sắp xếp theo giá<select v-model="sortOrder"><option value="">Thứ tự ban đầu</option><option value="asc">Tăng dần</option><option value="desc">Giảm dần</option></select></label>
+      </div>
+      <p v-if="searchNotice" class="notice" role="status">{{ searchNotice }}</p>
+      <div class="summary"><span>Đang hiển thị <strong>{{ visibleCount }}/{{ totalCount }}</strong> sản phẩm</span><span>Giá trị tồn kho: <strong>{{ formatMoney(visibleInventoryValue) }}</strong></span></div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>ID</th><th>Tên sản phẩm</th><th>Danh mục</th><th>Giá</th><th>Tồn kho</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+          <tbody>
+            <tr v-for="product in visibleProducts" :key="product.id">
+              <td>{{ product.id }}</td><td><strong>{{ product.name }}</strong></td><td>{{ product.category }}</td>
+              <td>{{ formatMoney(product.price) }}</td><td>{{ product.stock }}</td>
+              <td><span class="stock" :class="product.stock > 0 ? 'in-stock' : 'out-of-stock'">{{ product.stock > 0 ? 'Còn hàng' : 'Hết hàng' }}</span></td>
+              <td><button class="danger-text" type="button" @click="deleteProduct(product.id)">Xóa</button></td>
+            </tr>
+            <tr v-if="visibleProducts.length === 0"><td colspan="7" class="empty">Không có sản phẩm phù hợp.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Thêm sản phẩm</h2>
+      <form class="add-form" @submit.prevent="addProduct">
+        <label>Tên sản phẩm<input v-model.trim="newProduct.name" type="text" maxlength="100" placeholder="Tên sản phẩm" required></label>
+        <label>Giá (đ)<input v-model.number="newProduct.price" type="number" min="0.01" step="0.01" required></label>
+        <label>Danh mục<select v-model="newProduct.category"><option v-for="category in categories" :key="category" :value="category">{{ category }}</option></select></label>
+        <label>Số lượng tồn<input v-model.number="newProduct.stock" type="number" min="0" step="1" required></label>
+        <button type="submit">Thêm sản phẩm</button>
+      </form>
+      <p v-if="formError" class="error" role="alert">{{ formError }}</p>
+    </section>
+  </main>
+</body>
+</html>

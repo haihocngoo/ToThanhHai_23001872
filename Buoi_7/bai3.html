@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 3 - Giỏ hàng</title><link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="components/DongGioHang.js" defer></script>
+  <script src="bai3.js" defer></script>
+</head>
+<body>
+  <main id="app" class="container slim" v-cloak>
+    <a class="back" href="index.html">← Danh sách bài tập</a>
+    <p class="eyebrow">Bài 3 · Props và sự kiện tùy chỉnh</p>
+    <h1>Giỏ hàng của bạn</h1>
+    <p class="lead">Số lượng được kiểm tra và cập nhật ở component cha.</p>
+    <section class="panel">
+      <div v-if="cart.length">
+        <div class="cart-head"><span>Sản phẩm</span><span>Thành tiền</span></div>
+        <dong-gio-hang v-for="item in cart" :key="item.id" :item="item"
+          @doi-so-luong="changeQuantity" @yeu-cau-xoa="removeItem"></dong-gio-hang>
+        <div class="cart-summary"><span>Tổng số lượng</span><strong>{{ totalQuantity }}</strong></div>
+        <div class="cart-summary grand-total"><span>Tổng tiền</span><strong>{{ formatMoney(totalPrice) }}</strong></div>
+      </div>
+      <p v-else class="empty">Giỏ hàng trống</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 2 - Component sản phẩm</title><link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js" defer></script>
+  <script src="components/TheSanPham.js" defer></script>
+  <script src="bai2.js" defer></script>
+</head>
+<body>
+  <main id="app" class="container" v-cloak>
+    <a class="back" href="index.html">← Danh sách bài tập</a>
+    <p class="eyebrow">Bài 2 · Component và props</p>
+    <h1>Danh mục sản phẩm</h1>
+    <p class="lead">Mỗi thẻ tự quản lý trạng thái mở phần mô tả.</p>
+    <p v-if="purchaseNotice" class="notice" role="status">{{ purchaseNotice }}</p>
+    <div class="product-grid">
+      <the-san-pham v-for="product in products" :key="product.id"
+        :ten="product.name" :gia="product.price" :anh="product.image"
+        :mo-ta="product.description" :so-luong-ton="product.stock"
+        @mua="showPurchaseNotice"></the-san-pham>
+    </div>
+  </main>
+</body>
+</html>
