@@ -1,0 +1,35 @@
+:root { font-family: Inter, "Segoe UI", Arial, sans-serif; color: #203349; background: #f4f7fb; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 90% 0, #e2edfb, transparent 35%), #f4f7fb; }
+[v-cloak] { display: none; }
+.container { width: min(1050px, calc(100% - 36px)); margin: auto; padding: 60px 0 90px; }
+.eyebrow { color: #416ab0; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+h1 { margin: 8px 0; font-size: clamp(2rem, 5vw, 3.1rem); letter-spacing: -.04em; }
+h2 { margin: 0; font-size: 1.35rem; }
+.lead { color: #607287; margin: 0 0 28px; }
+.panel { background: white; border: 1px solid #e0e8f1; border-radius: 18px; box-shadow: 0 12px 32px rgba(30, 53, 92, .07); margin-top: 20px; padding: 25px; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 15px; margin-bottom: 16px; }
+.message { padding: 12px 15px; border-radius: 10px; line-height: 1.5; }
+.error { background: #fde9e7; color: #9e3835; }
+.success { background: #dcf3e6; color: #176d47; }
+button, input { font: inherit; }
+button { border: 0; background: #315fa8; color: white; font-weight: 700; padding: 9px 15px; border-radius: 9px; cursor: pointer; }
+button:hover:not(:disabled) { background: #254b86; }
+button:disabled { opacity: .55; cursor: not-allowed; }
+.secondary { background: #e9f0fa; color: #315b92; }
+.secondary:hover:not(:disabled) { background: #d9e6f6; }
+.danger { background: #fbe9e7; color: #a33d37; }
+.danger:hover:not(:disabled) { background: #f6d6d2; }
+.table-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 580px; }
+th, td { padding: 13px 10px; text-align: left; border-bottom: 1px solid #e6ecf3; }
+th { background: #f6f8fb; color: #65778a; font-size: .82rem; text-transform: uppercase; }
+.actions { display: flex; gap: 8px; }
+.empty { color: #718298; text-align: center; padding: 28px; }
+.form-panel h2 { margin-bottom: 18px; }
+.form-grid { display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 14px; }
+label { font-size: .9rem; font-weight: 700; }
+input { display: block; width: 100%; margin-top: 7px; border: 1px solid #bdcbdc; border-radius: 9px; padding: 10px 12px; color: #203349; }
+input:focus-visible, button:focus-visible { outline: 3px solid #a4c8fc; outline-offset: 2px; }
+.form-actions { display: flex; gap: 9px; margin-top: 18px; }
+@media (max-width: 650px) { .container { padding-top: 35px; } .panel { padding: 18px; } .form-grid { grid-template-columns: 1fr; } }
